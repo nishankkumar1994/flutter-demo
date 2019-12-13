@@ -215,10 +215,11 @@ class _CameraScreenState extends State {
     if (controller != null) {
       await controller.dispose();
     }
-
+    print('_initCameraController');
     // 3
     controller = CameraController(cameraDescription, ResolutionPreset.high);
-
+    print('controller');
+    print(controller);
     // If the controller is updated then update the UI.
     // 4
     controller.addListener(() {
@@ -244,27 +245,109 @@ class _CameraScreenState extends State {
     }
   }
  
-  @override
-  build(context) {
-    return _cameraPreviewWidget();
-  }
+  // @override
+  // build(context) {
+  //   return _cameraPreviewWidget();
+  // }
  
-  Widget _cameraPreviewWidget() {
-    if (controller == null || !controller.value.isInitialized) {
-      return const Text(
-        'Loading',
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 20.0,
-          fontWeight: FontWeight.w900,
-        ),
-      );
-    }
+  // Widget _cameraPreviewWidget() {
+  //   if (controller == null || !controller.value.isInitialized) {
+  //     return const Text(
+  //       'Loading',
+  //       style: TextStyle(
+  //         color: Colors.white,
+  //         fontSize: 20.0,
+  //         fontWeight: FontWeight.w900,
+  //       ),
+  //     );
+  //   }
 
-    return AspectRatio(
-        aspectRatio: controller.value.aspectRatio,
-        child: CameraPreview(controller),
-      );
+  //   return AspectRatio(
+  //       aspectRatio: controller.value.aspectRatio,
+  //       child: CameraPreview(controller),
+  //     );
+  // }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Take a picture')),
+      // Wait until the controller is initialized before displaying the
+      // camera preview. Use a FutureBuilder to display a loading spinner
+      // until the controller has finished initializing.
+      body: FutureBuilder<void>(
+        // future: _initializeControllerFuture,
+        // builder: (context, snapshot) {
+        //   if (snapshot.connectionState == ConnectionState.done) {
+        //     // If the Future is complete, display the preview.
+        //     return CameraPreview(controller);
+        //   } else {
+        //     // Otherwise, display a loading indicator.
+        //     return Center(child: CircularProgressIndicator());
+        //   }
+        // },
+        builder: (context, snapshot) {
+          return AspectRatio(
+            aspectRatio: controller.value.aspectRatio,
+            child: CameraPreview(controller),
+          );
+        }
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.camera_alt),
+        // Provide an onPressed callback.
+        onPressed: () async {
+          try {
+            // 1
+            final path = join(
+              (await getTemporaryDirectory()).path,
+              '${DateTime.now()}.png',
+            );
+            // 2
+            await controller.takePicture(path);
+            // 3
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DisplayPictureScreen(imagePath: path),
+              ),
+            );
+          } catch (e) {
+            print(e);
+          }
+        }
+        // onPressed: () async {
+        //   // Take the Picture in a try / catch block. If anything goes wrong,
+        //   // catch the error.
+        //   try {
+        //     // Ensure that the camera is initialized.
+        //     await _initializeControllerFuture;
+
+        //     // Construct the path where the image should be saved using the
+        //     // pattern package.
+        //     final path = join(
+        //       // Store the picture in the temp directory.
+        //       // Find the temp directory using the `path_provider` plugin.
+        //       (await getTemporaryDirectory()).path,
+        //       '${DateTime.now()}.png',
+        //     );
+
+        //     // Attempt to take a picture and log where it's been saved.
+        //     await _controller.takePicture(path);
+
+        //     // If the picture was taken, display it on a new screen.
+        //     Navigator.push(
+        //       context,
+        //       MaterialPageRoute(
+        //         builder: (context) => DisplayPictureScreen(imagePath: path),
+        //       ),
+        //     );
+        //   } catch (e) {
+        //     // If an error occurs, log the error to the console.
+        //     print(e);
+        //   }
+        // },
+      ),
+    );
   }
   void _onCapturePressed(context) async {
     try {
