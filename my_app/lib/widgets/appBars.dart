@@ -7,6 +7,7 @@ import 'profile.dart';
 import '../screens/history/index.dart';
 import '../screens/login/index.dart';
 import '../screens/long-list/index.dart';
+import '../screens/contact/index.dart';
 
 Widget fullAppbar(BuildContext context) {
   return PreferredSize(
@@ -247,17 +248,17 @@ Widget leftNavigation(BuildContext context) {
             );
           },
         ),
-        // ListTile(
-        //   leading: Icon(Icons.add),
-        //   title: Text('Login'),
-        //   onTap: () {
-        //     Navigator.pop(context); 
-        //     Navigator.push(
-        //       context,
-        //       MaterialPageRoute(builder: (context) => Login()),
-        //     );
-        //   },
-        // ),
+        ListTile(
+          leading: Icon(Icons.add),
+          title: Text('Contact'),
+          onTap: () {
+            Navigator.pop(context); 
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Contact()),
+            );
+          },
+        ),
       ],
     ),
   );
