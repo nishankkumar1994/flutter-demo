@@ -1,5 +1,9 @@
 // import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'dart:core';
+import 'dart:convert';
+import 'package:contacts_service/contacts_service.dart';  
 // import 'package:flutter/services.dart';
 // import 'package:permission_handler/permission_handler.dart';
 
@@ -87,13 +91,49 @@ class Contact extends StatelessWidget {
       const ContactModal(fullName: 'Emilie Olsen', email: 'emilie.olsen@example.com')
     ];
 
+    
+
     class ContactList extends StatelessWidget {
       final List<ContactModal> _contacts;
 
       ContactList(this._contacts);
 
+      // static Future<Iterable> getContact() async {
+      //   Iterable contacts = await ContactsService.getContacts(); 
+      //   print('---------------contacts');
+      //   print(contacts);
+      //   return contacts;
+      // }
+      Future<List<Contact>> getContact() async {
+
+        var data = await ContactsService.getContacts(); 
+
+        // var jsonData = json.decode(data);
+        print('---------jsonData');
+        print(data);
+
+        // List<String> users = [];
+
+        // for(var u in jsonData){
+
+        //   User user = User(u["index"], u["about"], u["name"], u["email"], u["picture"]);
+
+        //   users.add(user);
+
+        // }
+
+        // print(users.length);
+
+        // return users;
+        // return data;
+
+      }
+
       @override
       Widget build(BuildContext context) {
+        print('---------------getContact');
+        var contacts = getContact();
+
         return new ListView.builder(
           padding: new EdgeInsets.symmetric(vertical: 8.0),
           itemBuilder: (context, index) {

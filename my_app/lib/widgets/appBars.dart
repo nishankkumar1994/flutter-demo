@@ -8,6 +8,8 @@ import '../screens/history/index.dart';
 import '../screens/login/index.dart';
 import '../screens/long-list/index.dart';
 import '../screens/contact/index.dart';
+import '../screens/auth/index.dart';
+import '../screens/webview/index.dart';
 
 Widget fullAppbar(BuildContext context) {
   return PreferredSize(
@@ -256,6 +258,31 @@ Widget leftNavigation(BuildContext context) {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => Contact()),
+            );
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.add),
+          title: Text('Auth'),
+          onTap: () {
+            Navigator.pop(context); 
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Auth()),
+            );
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.add),
+          title: Text('WebView'),
+          onTap: () {
+            Navigator.pop(context); 
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => WebView(
+                title: "Alligator.io",
+                selectedUrl: "https://alligator.io",
+              )),
             );
           },
         ),

@@ -38,4 +38,6 @@
     <!-- Permissions options for the `Storage` group -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- Permissions options for the `Fingureprint` group -->
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
 </manifest>
