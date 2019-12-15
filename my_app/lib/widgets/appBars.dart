@@ -257,7 +257,7 @@ Widget leftNavigation(BuildContext context) {
             Navigator.pop(context); 
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Contact()),
+              MaterialPageRoute(builder: (context) => ContactMain()),
             );
           },
         ),
