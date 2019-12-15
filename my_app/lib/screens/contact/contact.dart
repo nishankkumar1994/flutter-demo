@@ -6,6 +6,11 @@ import 'dart:convert';
 import 'package:contacts_service/contacts_service.dart';  
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
+// import '../../services/calls_and_messages_service.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:get_it/get_it.dart';
+// import 'package:flutter_calls_messages/services/calls_and_messages_service.dart';
+// import 'package:get_it/get_it.dart';
 
  class ContactMain extends StatefulWidget {
    @override
@@ -14,12 +19,15 @@ import 'package:permission_handler/permission_handler.dart';
 
  class _AccessContactsState extends State<ContactMain> {
    Iterable<Contact> _contacts;
+   GetIt locator = GetIt.instance;
 
    @override
    void initState() {
      super.initState();
      getContacts();
    }
+  void call(String number) => launch("tel:$number");
+  // final CallsAndMessagesService _service = locator<CallsAndMessagesService>();
 
    getContacts() async {
      print('-----------getcontacts');
@@ -72,6 +80,12 @@ import 'package:permission_handler/permission_handler.dart';
                          )
                        : CircleAvatar(child: Text(c.initials())),
                    title: Text(c.displayName ?? ''),
+                    onTap: () {
+                      for (var phone in c.phones) {
+                        call(phone.value);
+                        break;
+                      }
+                    },
                  );
                },
              )
