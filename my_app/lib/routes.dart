@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'modules/posts/post.dart';
 import 'screens/dashboard/index.dart';
 import 'screens/list/index.dart';
 import 'screens/long-list/index.dart';
@@ -20,6 +21,7 @@ class Routes {
     '/login': (BuildContext context) => new Login(),
     '/long-list': (BuildContext context) => new LongListRoute(),
     '/transaction': (BuildContext context) => new Transaction(),
+    '/beneficiary': (BuildContext context) => new PostList(),
     // '/profile': (BuildContext context) => new Profile(),
   };
 

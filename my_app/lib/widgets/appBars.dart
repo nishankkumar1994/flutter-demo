@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'package:my_app/modules/posts/post.dart';
 import 'util.dart';
 import 'home.dart';
 import 'profile.dart';
@@ -283,6 +284,28 @@ Widget leftNavigation(BuildContext context) {
                 title: "Alligator.io",
                 selectedUrl: "https://alligator.io",
               )),
+            );
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.contacts),
+          title: Text('Post'),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => PostList()),
+            );
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.power_settings_new),
+          title: Text('Logout'),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Login()),
             );
           },
         ),
