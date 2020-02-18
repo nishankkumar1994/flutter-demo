@@ -56,7 +56,7 @@ class MyCustomFormState extends State<MyCustomForm> {
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
-    final loginButon = Material(
+    final loginButton = Material(
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
       color: Color(0xff01A0C7),
@@ -104,7 +104,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                 SizedBox(
                   height: 35.0,
                 ),
-                loginButon,
+                loginButton,
                 SizedBox(
                   height: 15.0,
                 ),

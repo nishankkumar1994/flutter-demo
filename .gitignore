@@ -8,3 +8,6 @@
 .buildlog/
 .history
 .svn/
+
+# IDE Files
+.idea/
