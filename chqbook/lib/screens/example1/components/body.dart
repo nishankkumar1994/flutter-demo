@@ -6,7 +6,7 @@ class Body extends StatelessWidget {
     return Center(
       child: RaisedButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/ExScreen2');
+          Navigator.pushNamed(context, '/loans');
         },
         child: Text('Second Screen!'),
       ),

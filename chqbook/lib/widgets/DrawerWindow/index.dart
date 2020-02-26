@@ -14,7 +14,7 @@ class DrawerWindow extends StatelessWidget {
           DrawerHeader(
             child: Text('Drawer Header'),
             decoration: BoxDecoration(
-              color: Colors.red,
+              color: Color.fromRGBO(217, 35, 43, 1),
             ),
           ),
           ListTile(
